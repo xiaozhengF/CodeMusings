@@ -1,0 +1,29 @@
+#include<iostream>
+#include<cstdio>
+#include <vector>
+using namespace std;
+class Solution {
+public:
+    //target在一个左闭右闭区间
+    int search(vector<int>& nums, int target) {
+        int left = 0,right = nums.size()-1;
+        while(left<=right){
+            int mid = left+(right-left)/2;
+            if(nums[mid] == target) return mid;
+            else if(nums[mid] > target) right = mid-1;
+            else left = mid+1;
+        }
+        return -1;
+    }
+    //target在一个左闭右开区间
+    int search1(vector<int>& nums, int target) {
+        int left = 0,right = nums.size();
+        while(left<right){
+            int mid = left+(right-left)/2;
+            if(nums[mid] == target) return mid;
+            else if(nums[mid] > target) right = mid;
+            else left = mid+1;
+        }
+        return -1;
+    }
+};
